@@ -64,9 +64,14 @@
                                         <a href="{{ url('edulevels/edit/' . $item->id) }}" class="btn btn-primary btn-sm">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <a href="" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash-o"></i>
-                                        </a>
+                                        <form action="{{ url('edulevels/' . $item->id) }}" method="post"
+                                            class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
