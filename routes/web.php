@@ -48,3 +48,12 @@ Route::prefix('admin')->group(function () {
         return 'Hello Semua';
     });
 });
+
+//show template
+// Route::get('home', function () {
+//     return view('main');
+// });
+
+Route::get('home', function () {
+    return view('home');
+});
