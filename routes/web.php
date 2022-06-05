@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EdulevelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,6 @@ Route::prefix('admin')->group(function () {
 Route::get('home', function () {
     return view('home');
 });
+
+// route call controller
+Route::get('edulevels', [EdulevelController::class, 'data']);

@@ -1,0 +1,2 @@
+#Create Controller using cmd
+php artisan make:controller NameController
