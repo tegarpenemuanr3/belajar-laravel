@@ -23,6 +23,17 @@ class EdulevelController extends Controller
 
     public function addProcess(Request $request)
     {
+        $request->validate(
+            [
+                'name' => 'required|min:2',
+                'desc' => 'required'
+            ],
+            [
+                'name.required' => 'Nama jenjang tidak boleh kosong',
+                'desc.required' => 'Deskripsi tidak boleh kosong'
+            ]
+        );
+
         // return $request;
         DB::table('edulevels')->insert([
             'name' => $request->name,
@@ -40,6 +51,17 @@ class EdulevelController extends Controller
 
     public function editProcess(Request $request, $id)
     {
+        $request->validate(
+            [
+                'name' => 'required|min:2',
+                'desc' => 'required'
+            ],
+            [
+                'name.required' => 'Nama jenjang tidak boleh kosong',
+                'desc.required' => 'Deskripsi tidak boleh kosong'
+            ]
+        );
+
         DB::table('edulevels')->where('id', $id)->update([
             'name' => $request->name,
             'desc' => $request->desc
