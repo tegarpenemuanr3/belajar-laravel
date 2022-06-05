@@ -1,0 +1,26 @@
+#Running Migration
+php artisan migrate
+
+#Rollback migration (delete semua table)
+php artisan migrate:rollback
+
+#Drop All Table & Migrate
+php artisan migrate:fresh
+
+#Create Migration
+php artisan make:migrate create_tableName_table
+
+#Create Migration custom table '--create=tableName'
+php artisan make:migration create_tableName_table --create=tableName
+
+#Add Column to table using migration
+php artisan make:migration add_columnTable_to_tableName_table --table=tableName
+
+#Create Seeder
+php artisan make:seeder NameSeeder
+
+#Run Seeder
+php artisan db:seed --class=NameClassSeeder
+
+#Run seeder public
+php artisan db:seed (Syarat pada directory 'DatabaseSeeder' dalam function Run class seeder perlu dipanggil)
