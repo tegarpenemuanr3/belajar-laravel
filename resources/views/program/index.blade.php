@@ -52,7 +52,6 @@
                             <th>No.</th>
                             <th>Nama Program</th>
                             <th>EduLevel</th>
-                            <th>Info</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
@@ -60,10 +59,12 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->edulevel->name}}</td>
-                                    <td>{{ $item->info }}</td>
+                                    <td>{{ $item->edulevel->name }}</td>
                                     <td class="text-center">
-                                        <a href="{{ url('edulevels/edit/' . $item->id) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ url('programs/' . $item->id) }}" class="btn btn-warning btn-sm">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a href="{{ url('programs/edit/' . $item->id) }}" class="btn btn-primary btn-sm">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <form action="{{ url('edulevels/' . $item->id) }}" method="post"

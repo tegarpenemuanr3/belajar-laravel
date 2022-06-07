@@ -9,7 +9,9 @@ class Program extends Model
 {
 
     //ini digunakan ketika nama table tidak sama 
-    protected $table = 'edulevels';
+    // protected $table = 'edulevels';
+
+    protected $hidden = ['created_at', 'updated_at']; //hidden data dari data model
 
     public function edulevel()
     {

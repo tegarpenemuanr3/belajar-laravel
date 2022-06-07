@@ -21,7 +21,11 @@ class ProgramController extends Controller
     public function index()
     {
         $programs = Program::all(); //retrieve model
+
+        //untuk tampil data langsung (debugging)
+        // $programs = Program::with('edulevel')->get();
         // return $programs;
+
         return view('program/index', compact('programs'));
     }
 
@@ -54,8 +58,23 @@ class ProgramController extends Controller
      */
     public function show(Program $program)
     {
-        //
+        //penerapan route model binding
+        //route binding artinya ketika ada route yang sesuai maka auto menjalankan program
+
+        //$program->makeHidden('edulevel_id'); //hidden data
+        $program->makeHidden(['edulevel_id', 'id']); //hidden data
+        return $program;
     }
+
+    // public function show($id)
+    // {
+    //     //$program = Program::find($id); //jadi objek
+
+    //     $program = Program::where('id', $id)->get(); //jadi array objek
+    //     $program = $program[0];
+
+    //     return $program;
+    // }
 
     /**
      * Show the form for editing the specified resource.
