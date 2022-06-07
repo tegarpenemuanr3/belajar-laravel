@@ -50,16 +50,18 @@
                     <table class="table table-bordered">
                         <thead>
                             <th>No.</th>
-                            <th>Name</th>
+                            <th>Nama Program</th>
+                            <th>EduLevel</th>
                             <th>Info</th>
                             <th>Action</th>
                         </thead>
-                        {{-- <tbody>
-                            @foreach ($edulevel as $item)
+                        <tbody>
+                            @foreach ($programs as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->desc }}</td>
+                                    <td>{{ $item->edulevel->name}}</td>
+                                    <td>{{ $item->info }}</td>
                                     <td class="text-center">
                                         <a href="{{ url('edulevels/edit/' . $item->id) }}" class="btn btn-primary btn-sm">
                                             <i class="fa fa-pencil"></i>
@@ -75,7 +77,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
 {
-    use HasFactory;
+
+    //ini digunakan ketika nama table tidak sama 
+    protected $table = 'edulevels';
+
+    public function edulevel()
+    {
+        return $this->belongsTo(Edulevel::class);
+    }
 }
