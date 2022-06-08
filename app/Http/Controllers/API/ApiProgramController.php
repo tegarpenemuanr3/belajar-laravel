@@ -16,7 +16,14 @@ class ApiProgramController extends Controller
     public function index()
     {
         $programs = Program::with('edulevel')->get();
-        return response()->json($programs);
+
+        if ($programs->count() > 0) {
+            return response()->json($programs);
+        } else {
+            return response()->json([
+                'message' => 'Data Kosong'
+            ]);
+        }
     }
 
     /**
@@ -37,7 +44,26 @@ class ApiProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //belum dibuat validasi
+
+        try {
+            $response = Program::create([
+                'name' => $request->name,
+                'edulevel_id' => $request->edulevel_id,
+                'student_price' => $request->student_price,
+                'student_max' => $request->student_max,
+                'info' => $request->info,
+            ]);
+            return response()->json([
+                'message' => 'Data Berhasil Ditambahkan',
+                'data' => $response
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error',
+                'errors' => $e->getMessage()
+            ], 422);
+        }
     }
 
     /**
@@ -71,7 +97,32 @@ class ApiProgramController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Belum ada validasi
+
+        try {
+            Program::where('id', $id)
+                ->update([
+                    'name' => $request->name,
+                    'edulevel_id' => $request->edulevel_id,
+                    'student_price' => $request->student_price,
+                    'student_max' => $request->student_max,
+                    'info' => $request->info,
+                ]);
+            return response()->json([
+                'message' => 'Data Berhasil Diedit',
+                'data' => Program::find($id)
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error',
+                'errors' => $e->getMessage()
+            ], 422);
+        }
+
+        // return response()->json([
+        //     'data' => $program,
+        //     'response' => $request
+        // ]);
     }
 
     /**
@@ -82,6 +133,17 @@ class ApiProgramController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $program = Program::find($id);
+            $program->delete();
+            return response()->json([
+                'message' => 'Data Berhasil Dihapus'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([ //nilai balik
+                'message' => 'Error',
+                'errors' => $e->getMessage()
+            ]);
+        }
     }
 }

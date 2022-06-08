@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('program', ApiProgramController::class);
+Route::post('/program/{id}', [ApiProgramController::class, 'update']);

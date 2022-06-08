@@ -30,7 +30,7 @@ class ProgramController extends Controller
         //untuk tampil data langsung (debugging)
         // $programs = Program::with('edulevel')->get();
         // return $programs;
-        $programs = Program::with('edulevel')->simplePaginate(3); //next dan previus saja
+        $programs = Program::with('edulevel')->simplePaginate(10); //next dan previus saja
         // $programs = Program::with('edulevel')->paginate(1);
 
         return view('program/index', compact('programs'));
@@ -78,27 +78,27 @@ class ProgramController extends Controller
         //Cara 2 : mass assignment cocok untuk penerapan API
         //Syarat di model terdeapat $fillable / $guarded
         //$hidden bisa untuk optional
-        // Program::create([
-        //     'name' => $request->name,
-        //     'edulevel_id' => $request->edulevel_id,
-        //     'student_price' => $request->student_price,
-        //     'student_max' => $request->student_max,
-        //     'info' => $request->info,
-        // ]);
-
-        //Cara 3: quick mass assigment > syarat: field tabel dan name inputan harus sama
-        // Program::create($request->all());
-
-        //Cara 4: gabungan antara Eloquent bawaan dengan mass assigment
-        $program = new Program([
+        Program::create([
             'name' => $request->name,
             'edulevel_id' => $request->edulevel_id,
             'student_price' => $request->student_price,
             'student_max' => $request->student_max,
             'info' => $request->info,
         ]);
-        $program->student_price = $request->student_price;
-        $program->save();
+
+        //Cara 3: quick mass assigment > syarat: field tabel dan name inputan harus sama
+        // Program::create($request->all());
+
+        //Cara 4: gabungan antara Eloquent bawaan dengan mass assigment
+        // $program = new Program([
+        //     'name' => $request->name,
+        //     'edulevel_id' => $request->edulevel_id,
+        //     'student_price' => $request->student_price,
+        //     'student_max' => $request->student_max,
+        //     'info' => $request->info,
+        // ]);
+        // $program->student_price = $request->student_price;
+        // $program->save();
 
         //Penjelasan cara 4
         //yang digunakan adalah 2 jalur jadi ketika data di model misal student_price di guarded. maka jalur masuk student_price akan masuk lewat eloquent biasa. kenapa begini karena ketika data umum bisa masuk lewat mass assigment dan data penting akan masuk lewat eloquent bawaan
