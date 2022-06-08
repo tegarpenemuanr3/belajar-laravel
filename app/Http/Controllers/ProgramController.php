@@ -21,7 +21,7 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        $programs = Program::all(); //retrieve model
+        //$programs = Program::all(); //retrieve model
 
         //$programs = Program::withTrashed()->get(); //dg ini semua file dg softdeletes yang di delete akan muncul semua
 
@@ -30,6 +30,8 @@ class ProgramController extends Controller
         //untuk tampil data langsung (debugging)
         // $programs = Program::with('edulevel')->get();
         // return $programs;
+        $programs = Program::with('edulevel')->simplePaginate(3); //next dan previus saja
+        // $programs = Program::with('edulevel')->paginate(1);
 
         return view('program/index', compact('programs'));
     }

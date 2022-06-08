@@ -59,9 +59,9 @@
                         </thead>
                         <tbody>
                             @if ($programs->count() > 0)
-                                @foreach ($programs as $item)
+                                @foreach ($programs as $key => $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $programs->firstItem() + $key }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->edulevel->name }}</td>
                                         <td class="text-center">
@@ -90,6 +90,15 @@
                             @endif
                         </tbody>
                     </table>
+                    <div>
+                        Showing
+                        {{ $programs->firstItem() }}
+                        of
+                        {{ $programs->lastItem() }}
+                    </div>
+                    <div class="pull-right">
+                        {{ $programs->links() }}
+                    </div>
                 </div>
             </div>
         </div>
