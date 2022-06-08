@@ -190,6 +190,23 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program)
     {
-        //
+        //4 cara hapus data permanen
+
+        //Cara 1
+        //Versi dokumentasi
+        // $flight = Program::find($program->id);
+        // $flight->delete();
+
+        //Cara 2
+        //karena ada Route model binding maka cukup
+        // $program->delete();
+
+        //Cara 3
+        // Program::destroy($program->id);
+
+        //Cara 4
+        Program::where('id', $program->id)->delete();
+
+        return redirect('programs')->with('status', 'Program berhasil dihapus!');
     }
 }

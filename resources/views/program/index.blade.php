@@ -68,7 +68,7 @@
                                             class="btn btn-primary btn-sm">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <form action="{{ url('edulevels/' . $item->id) }}" method="post"
+                                        <form action="{{ url('programs/' . $item->id) }}" method="post"
                                             class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
                                             @method('delete')
                                             @csrf
