@@ -72,13 +72,16 @@ class ProgramController extends Controller
         //Cara 2 : mass assignment
         //Syarat di model terdeapat $fillable / $guarded
         //$hidden bisa untuk optional
-        Program::create([
-            'name' => $request->name,
-            'edulevel_id' => $request->edulevel_id,
-            'student_price' => $request->student_price,
-            'student_max' => $request->student_max,
-            'info' => $request->info,
-        ]);
+        // Program::create([
+        //     'name' => $request->name,
+        //     'edulevel_id' => $request->edulevel_id,
+        //     'student_price' => $request->student_price,
+        //     'student_max' => $request->student_max,
+        //     'info' => $request->info,
+        // ]);
+
+        //Cara 3: quick mass assigment > syarat: field tabel dan name inputan harus sama
+        Program::create($request->all());
 
         return redirect('programs')->with('status', 'Program berhasil ditambah!');
     }
