@@ -68,4 +68,7 @@ Route::get('edulevels/edit/{id}', [EdulevelController::class, 'edit']);
 Route::patch('edulevels/{id}', [EdulevelController::class, 'editProcess']);
 Route::delete('edulevels/{id}', [EdulevelController::class, 'delete']);
 
+Route::get('programs/trash', [ProgramController::class, 'trash']);
+Route::get('programs/restore/{id?}', [ProgramController::class, 'restore']);
+Route::get('programs/delete/{id?}', [ProgramController::class, 'delete']);
 Route::resource('programs', ProgramController::class);

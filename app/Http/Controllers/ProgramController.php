@@ -203,7 +203,7 @@ class ProgramController extends Controller
 
         //Cara 2
         //karena ada Route model binding maka cukup
-        // $program->delete();
+        $program->delete();
 
         //Cara 3
         // Program::destroy($program->id);
@@ -213,8 +213,39 @@ class ProgramController extends Controller
 
         //Cara 5 
         //Delete ketika menerapkan softdelete
-        $program->forceDelete();
+        //$program->forceDelete();
 
         return redirect('programs')->with('status', 'Program berhasil dihapus!');
+    }
+
+    public function trash()
+    {
+        $programs = Program::onlyTrashed()->get();
+        return view('program/trash', compact('programs'));
+        // dd($programs);
+    }
+
+    public function restore($id = null)
+    {
+        if ($id != null) {
+            $programs = Program::onlyTrashed()
+                ->where('id', $id)
+                ->restore();
+        } else {
+            $programs = Program::onlyTrashed()->restore();
+        }
+        return redirect('programs/trash')->with('status', 'Program berhasil di-restore!');
+    }
+
+    public function delete($id = null)
+    {
+        if ($id != null) {
+            $programs = Program::onlyTrashed()
+                ->where('id', $id)
+                ->forceDelete();
+        } else {
+            $programs = Program::onlyTrashed()->forceDelete();
+        }
+        return redirect('programs/trash')->with('status', 'Program berhasil di-dihapus permanen!');
     }
 }

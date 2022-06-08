@@ -16,7 +16,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Program</a></li>
-                        <li class="active">Data</li>
+                        <li class="active">Trash</li>
                     </ol>
                 </div>
             </div>
@@ -38,14 +38,17 @@
             <div class="card">
                 <div class="card-header">
                     <div class="pull-left">
-                        <strong>Data Program</strong>
+                        <strong>Data Program Terhapus</strong>
                     </div>
                     <div class="pull-right">
-                        <a href="{{ url('programs/trash') }}" class="btn btn-danger btn-sm">
-                            <i class="fa fa-trash"></i> Delete
+                        <a href="{{ url('programs/delete') }}" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash"></i> Delete All
                         </a>
-                        <a href="{{ url('programs/create') }}" class="btn btn-success btn-sm">
-                            <i class="fa fa-plus"></i> Add
+                        <a href="{{ url('programs/restore') }}" class="btn btn-info btn-sm">
+                            <i class="fa fa-undo"></i> Restore All
+                        </a>
+                        <a href="{{ url('programs') }}" class="btn btn-secondary btn-sm">
+                            <i class="fa fa-chevron-left"></i> Back
                         </a>
                     </div>
                 </div>
@@ -65,21 +68,15 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->edulevel->name }}</td>
                                         <td class="text-center">
-                                            <a href="{{ url('programs/' . $item->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="fa fa-eye"></i>
+                                            <a href="{{ url('programs/restore/' . $item->id) }}"
+                                                class="btn btn-info btn-sm">
+                                                Restore
                                             </a>
-                                            <a href="{{ url('programs/' . $item->id . '/edit') }}"
-                                                class="btn btn-primary btn-sm">
-                                                <i class="fa fa-pencil"></i>
+
+                                            <a href="{{ url('programs/delete/' . $item->id) }}"
+                                                class="btn btn-danger btn-sm">
+                                                Delete Permanenly
                                             </a>
-                                            <form action="{{ url('programs/' . $item->id) }}" method="post"
-                                                class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
-                                                @method('delete')
-                                                @csrf
-                                                <button class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash-o"></i>
-                                                </button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
