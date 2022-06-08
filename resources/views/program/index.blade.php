@@ -41,7 +41,7 @@
                         <strong>Data Program</strong>
                     </div>
                     <div class="pull-right">
-                        <a href="{{ url('edulevels/add') }}" class="btn btn-success btn-sm">
+                        <a href="{{ url('programs/create') }}" class="btn btn-success btn-sm">
                             <i class="fa fa-plus"></i> Add
                         </a>
                     </div>

@@ -50,10 +50,10 @@
                 <div class="card-body table-responsive">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <table>
+                            <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <th style="width:60%">Edulevel</th>
+                                        <th style="width:30%">Edulevel</th>
                                         <td>{{ $program->edulevel->name }}</td>
                                     </tr>
                                     <tr>
