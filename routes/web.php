@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EdulevelController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,8 @@ use App\Http\Controllers\ProgramController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('home');
 });
 
 //Route langsung tampilkan konten
@@ -72,3 +74,12 @@ Route::get('programs/trash', [ProgramController::class, 'trash']);
 Route::get('programs/restore/{id?}', [ProgramController::class, 'restore']);
 Route::get('programs/delete/{id?}', [ProgramController::class, 'delete']);
 Route::resource('programs', ProgramController::class);
+
+//Student - Image CRUD
+Route::get('students', [StudentController::class, 'index']);
+Route::get('add-student', [StudentController::class, 'create']);
+Route::post('add-student', [StudentController::class, 'store']);
+Route::get('edit-student/{id}', [StudentController::class, 'edit']);
+Route::put('update-student/{id}', [StudentController::class, 'update']);
+Route::get('delete-student/{id}', [StudentController::class, 'destroy']);
+Route::delete('delete-student/{id}', [StudentController::class, 'destroy']);

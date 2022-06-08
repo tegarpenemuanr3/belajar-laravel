@@ -53,6 +53,10 @@
                     <li>
                         <a href="{{ url('programs') }}"> <i class="menu-icon fa fa-book"></i>Program </a>
                     </li>
+                    <li>
+                        <a href="{{ url('students') }}"> <i class="menu-icon fa fa-solid fa-user"></i>Student
+                        </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
