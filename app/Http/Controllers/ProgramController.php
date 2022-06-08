@@ -135,7 +135,8 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
-        //
+        $edulevels = Edulevel::all();
+        return view('program.edit', compact('program', 'edulevels'));
     }
 
     /**
@@ -147,7 +148,38 @@ class ProgramController extends Controller
      */
     public function update(Request $request, Program $program)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required|min:3',
+                'edulevel_id' => 'required'
+            ],
+            [
+                'name.required' => 'Nama jenjang tidak boleh kosong',
+                'edulevel_id.required' => 'Jenjang tidak boleh kosong'
+            ]
+        );
+
+        //$program = Program::find($program->id); //ini tidak perlu dilakukan karena di $program sudah sesuai ID
+
+        //Cara 1 : Eloquent orm bawaan
+        // $program->name = $request->name;
+        // $program->edulevel_id = $request->edulevel_id;
+        // $program->student_price = $request->student_price;
+        // $program->student_max = $request->student_max;
+        // $program->info = $request->info;
+        // $program->save();
+
+        //Cara 2: Mass Assigment
+        Program::where('id', $program->id)
+            ->update([
+                'name' => $request->name,
+                'edulevel_id' => $request->edulevel_id,
+                'student_price' => $request->student_price,
+                'student_max' => $request->student_max,
+                'info' => $request->info,
+            ]);
+
+        return redirect('programs')->with('status', 'Program berhasil diedit!');
     }
 
     /**
