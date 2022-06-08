@@ -18,7 +18,7 @@ class Program extends Model
 
     protected $guarded = []; //field apa saja yg tidak boleh diisi
 
-    protected $hidden = ['created_at', 'updated_at']; //hidden data dari data model
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at']; //hidden data dari data model
 
     public function edulevel() //nama function secara otomatis akan menjadi nama variabel pada view untuk mengeambil data
     {
