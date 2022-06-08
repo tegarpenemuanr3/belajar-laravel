@@ -34,21 +34,24 @@
                     aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="{{ asset('style/images/logo.png') }}" alt="Logo"></a>
+                {{-- <a class="navbar-brand" href="./"><img src="{{ asset('style/images/logo.png') }}" alt="Logo"></a> --}}
+                <a class="navbar-brand" href="./">
+                    <h4>Bimbel Online</h4>
+                </a>
                 <a class="navbar-brand hidden" href="./"><img src="{{ asset('style/images/logo2.png') }}"
                         alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li>
+                    <li class="active">
                         <a href="{{ url('home') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <li>
-                        <a href="{{ url('edulevels') }}"> <i class="menu-icon fa fa-dashboard"></i>Jenjang </a>
+                        <a href="{{ url('edulevels') }}"> <i class="menu-icon fa fa-graduation-cap"></i>Jenjang </a>
                     </li>
                     <li>
-                        <a href="{{ url('programs') }}"> <i class="menu-icon fa fa-dashboard"></i>Program </a>
+                        <a href="{{ url('programs') }}"> <i class="menu-icon fa fa-book"></i>Program </a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
