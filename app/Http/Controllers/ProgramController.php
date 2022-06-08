@@ -60,7 +60,7 @@ class ProgramController extends Controller
             ]
         );
 
-        //Cara 1
+        //Cara 1 : Eloquent orm bawaan
         // $program = new Program;
         // $program->name = $request->name;
         // $program->edulevel_id = $request->edulevel_id;
@@ -69,7 +69,7 @@ class ProgramController extends Controller
         // $program->info = $request->info;
         // $program->save();
 
-        //Cara 2 : mass assignment
+        //Cara 2 : mass assignment cocok untuk penerapan API
         //Syarat di model terdeapat $fillable / $guarded
         //$hidden bisa untuk optional
         // Program::create([
@@ -81,7 +81,21 @@ class ProgramController extends Controller
         // ]);
 
         //Cara 3: quick mass assigment > syarat: field tabel dan name inputan harus sama
-        Program::create($request->all());
+        // Program::create($request->all());
+
+        //Cara 4: gabungan antara Eloquent bawaan dengan mass assigment
+        $program = new Program([
+            'name' => $request->name,
+            'edulevel_id' => $request->edulevel_id,
+            'student_price' => $request->student_price,
+            'student_max' => $request->student_max,
+            'info' => $request->info,
+        ]);
+        $program->student_price = $request->student_price;
+        $program->save();
+
+        //Penjelasan cara 4
+        //yang digunakan adalah 2 jalur jadi ketika data di model misal student_price di guarded. maka jalur masuk student_price akan masuk lewat eloquent biasa. kenapa begini karena ketika data umum bisa masuk lewat mass assigment dan data penting akan masuk lewat eloquent bawaan
 
         return redirect('programs')->with('status', 'Program berhasil ditambah!');
     }
