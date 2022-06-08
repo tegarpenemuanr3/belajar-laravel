@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\ApiProgramController;
+use App\Http\Controllers\API\ApiStudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('program', ApiProgramController::class);
 Route::post('/program/{id}', [ApiProgramController::class, 'update']);
+
+Route::resource('student', ApiStudentController::class);
+Route::post('/student/{id}', [ApiStudentController::class, 'update']);
