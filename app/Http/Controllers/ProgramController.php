@@ -23,6 +23,10 @@ class ProgramController extends Controller
     {
         $programs = Program::all(); //retrieve model
 
+        //$programs = Program::withTrashed()->get(); //dg ini semua file dg softdeletes yang di delete akan muncul semua
+
+        //$programs = Program::onlyTrashed()->get(); //tampil hanya yang sudah didelete soft
+
         //untuk tampil data langsung (debugging)
         // $programs = Program::with('edulevel')->get();
         // return $programs;
@@ -205,7 +209,11 @@ class ProgramController extends Controller
         // Program::destroy($program->id);
 
         //Cara 4
-        Program::where('id', $program->id)->delete();
+        //Program::where('id', $program->id)->delete();
+
+        //Cara 5 
+        //Delete ketika menerapkan softdelete
+        $program->forceDelete();
 
         return redirect('programs')->with('status', 'Program berhasil dihapus!');
     }
