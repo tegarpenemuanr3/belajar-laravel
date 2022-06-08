@@ -135,7 +135,8 @@ class ApiProgramController extends Controller
     {
         try {
             $program = Program::find($id);
-            $program->delete();
+            // $program->delete();
+            $program->forceDelete();
             return response()->json([
                 'message' => 'Data Berhasil Dihapus'
             ]);
