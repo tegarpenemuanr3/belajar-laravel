@@ -89,4 +89,5 @@ Route::delete('delete-student/{id}', [StudentController::class, 'destroy']);
 Route::get('anggota', [RelasionController::class, 'index']);
 Route::get('add-anggota', [RelasionController::class, 'create']);
 Route::post('anggota', [RelasionController::class, 'store']);
-Route::get('delete-anggota/{id}', [RelasionController::class, 'destroy']);
+
+Route::get('edit-anggota/{id}', [RelasionController::class, 'edit']);

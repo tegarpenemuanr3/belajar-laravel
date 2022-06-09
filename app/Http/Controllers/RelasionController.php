@@ -6,17 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Anggota;
 use App\Models\Hadiah;
 use App\Models\AnggotaHadiah;
+use Illuminate\Support\Facades\DB;
 
 class RelasionController extends Controller
 {
     public function index()
     {
-        $anggota = Anggota::get();
-        $anggotaHadiah = AnggotaHadiah::get();
+        $anggota = Anggota::orderBy('nama', 'asc')->get();
+        $hadiah = Hadiah::orderBy('nama_hadiah', 'asc')->get();
+        // $anggotaHadiah = AnggotaHadiah::orderBy('anggota_id', 'asc')->get();
         // dd($anggota);
         return view('anggota.index', [
             'anggota' => $anggota,
-            'anggotaHadiah' => $anggotaHadiah,
+            'hadiah' => $hadiah,
+            // 'anggotaHadiah' => $anggotaHadiah,
         ]);
     }
 
@@ -48,10 +51,13 @@ class RelasionController extends Controller
         return redirect('anggota')->with('status', 'Hadiah Anggota berhasil ditambah!');
     }
 
-    public function destroy($id)
+    public function edit($id)
     {
-        $student = AnggotaHadiah::find($id);
-        $student->delete();
-        return redirect('anggota')->with('status', 'Anggota Deleted Successfully');
+        //$anggota = AnggotaHadiah::where($id);
+        // $anggota = AnggotaHadiah::find($id);
+        // return view('anggota.edit', compact('anggota'));
+        $anggota = AnggotaHadiah::findOrFail($id);
+        $products = $anggota->anggota_id;
+        dd($products);
     }
 }

@@ -56,25 +56,25 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($hadiah as $a)
+                        {{-- <tbody>
+                            @foreach ($anggota as $a)
                                 <tr>
-                                    <td>{{ $a->nama_hadiah }}</td>
+                                    <td>{{ $a->nama }}</td>
                                     <td>
                                         <ol>
-                                            @foreach ($a->anggota as $h)
-                                                <li> {{ $h->nama }} </li>
+                                            @foreach ($a->hadiah as $h)
+                                                <li> {{ $h->nama_hadiah }} </li>
                                             @endforeach
                                         </ol>
                                     </td>
-                                    <td class="text-center">{{ $a->anggota->count() }}</td>
+                                    <td class="text-center">{{ $a->hadiah->count() }}</td>
                                     <td>
                                         <a href="{{ url('edit-anggota/' . $a->id) }}" class="btn btn-primary btn-sm">Cek
                                             Data</a>
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
+                        </tbody> --}}
                     </table>
                 </div>
             </div>
