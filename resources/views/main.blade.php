@@ -57,6 +57,10 @@
                         <a href="{{ url('students') }}"> <i class="menu-icon fa fa-solid fa-user"></i>Student
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('anggota') }}"> <i class="menu-icon fa fa-users"></i>Anggota
+                        </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

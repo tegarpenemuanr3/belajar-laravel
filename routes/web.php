@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EdulevelController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\RelasionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,9 @@ Route::get('edit-student/{id}', [StudentController::class, 'edit']);
 Route::put('update-student/{id}', [StudentController::class, 'update']);
 Route::get('delete-student/{id}', [StudentController::class, 'destroy']);
 Route::delete('delete-student/{id}', [StudentController::class, 'destroy']);
+
+//one to many
+Route::get('anggota', [RelasionController::class, 'index']);
+Route::get('add-anggota', [RelasionController::class, 'create']);
+Route::post('anggota', [RelasionController::class, 'store']);
+Route::get('delete-anggota/{id}', [RelasionController::class, 'destroy']);
